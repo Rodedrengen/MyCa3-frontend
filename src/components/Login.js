@@ -17,6 +17,7 @@ function Login(props) {
         .login(loginCredentials.username, loginCredentials.password)
         .then(() => {
           props.setLoggedIn(true);
+          props.setUser(facade.getUser)
           history.push('/dashboard');
         })
         .catch((err) => {

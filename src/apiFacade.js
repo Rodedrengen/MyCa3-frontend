@@ -51,10 +51,29 @@ function apiFacade() {
       });
   };
 
+  const saveChar = (pc) => {
+    
+    const options = makeOptions('POST', false , {
+      name: pc.name,
+      race: pc.race,
+      classes: pc.klasse,
+    });
+    console.log(options)
+    return fetch(URL + '/info', options)
+      .then(handleHttpErrors)
+      .then((res) => {
+        
+      })
+      .catch((err) => {
+        throw err;
+      });
+  };
+
   const fetchData = (endpoint, httpMethod) => {
     const options = makeOptions(httpMethod, true); //True add's the token
     return fetch(URL + endpoint, options).then(handleHttpErrors);
   };
+
   const makeOptions = (method, addToken, body) => {
     var opts = {
       method: method,
@@ -80,6 +99,7 @@ function apiFacade() {
     logout,
     fetchData,
     getUser,
+    saveChar
   };
 }
 const facade = apiFacade();

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import Login from './Login';
-import { useHistory } from 'react-router-dom';
 
 function Home(props) {
   return (
@@ -32,7 +31,7 @@ function Home(props) {
           </Col>
           {!props.loggedIn && (
             <Col sm="4">
-              <Login setLoggedIn={props.setLoggedIn} />
+              <Login setUser={props.setUser} setLoggedIn={props.setLoggedIn} />
             </Col>
           )}
         </Row>

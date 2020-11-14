@@ -1,17 +1,16 @@
 import React, { useEffect } from 'react';
-import { Col, Row, Container, Button } from 'react-bootstrap';
+import { Col, Row, Container, Button , Form} from 'react-bootstrap';
 import facade from '../apiFacade';
-import UserInfo from './UserInfo';
-import RemoteServerFetch from './RemoteServerFetch';
+import DndFetch from './DndFetch'
 import { useHistory } from 'react-router-dom';
 
-function DashBoard(props) {
+function Dnd(props) {
   const history = useHistory();
 
   useEffect(() => {
-    const user = facade.getUser();
-    if (user) {
-      history.push('/dashboard');
+    const user = props.user;
+    if (user.roles === "admin") {
+      history.push('/dnd');
     } else {
       history.push('/');
     }
@@ -25,20 +24,26 @@ function DashBoard(props) {
     history.push('/');
   };
 
+  function log(evt){
+    evt.preventDefault();
+    console.log(evt.target.value)
+  }
+
+  function onChange(){
+    
+  }
   return (
     <Container>
       <Button variant="primary" onClick={() => logout()}>
         Logout
-      </Button>
+          </Button>
       <Row>
-        <Col>
-          <UserInfo />
-        </Col>
-        <Col>
-          <RemoteServerFetch />
-        </Col>
+        
+          <DndFetch/>
+        
       </Row>
     </Container>
   );
+
 }
-export default DashBoard;
+export default Dnd;
